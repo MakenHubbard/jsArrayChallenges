@@ -1,18 +1,65 @@
-//Challenge 2 
-var challengeTwoInputA = [1,2,3,4,5,6,7,8,9]; //[1,2,7,4,5,6,3,8,9];
-var list = challengeTwoInputA.join(',').replace(7,3).replace(3,7);
-console.log(list);
+//Challenge 3 
+var challengeThreeInputA = [ 1, 1, 1, 2, 1, 1 ];  // 2
+var challengeThreeInputB = [ 0, 0, 0, 0, 0, 0, 0, 0.55, 0, 0 ];  // 0.55
+var list = challengeThreeInputA.join(',');
+var input1;
+var input2;
+var unique;
+for (var i = 0; i < challengeThreeInputA.length; i++){
+    if (input1 == null){ // Never been set - this is the first run
+      input1 = challengeThreeInputA[i];
+      continue;
+    }
+    if (input1 === challengeThreeInputA[i]) //match
+        continue;
+        
+    if (i != 1) { //we have see input1 multiple times, i is the unique one
+        unique = challengeThreeInputA[i];
+        continue;
+    }
+    if (i === 1) {//this is the second iteration and they dont match so look forward one element for the tie breaker
+        input2 = challengeThreeInputA[i];//save the second digit
+        if (input1 === challengeThreeInputA[i+1]) {// if the first and third match then second is unique
+            unique = input2;
+        }else {// else the first one is unique
+            unique = input1;
+        }  
+        break;
+    }
+}
 
-var challengeTwoInputB = [12,13,14]; //[12,17,14];
-var list2 = challengeTwoInputB.join(',').replace(3,7);
-console.log(list2);
 
-var challengeTwoInputC = [9,2,4,7,3];  //[9,2,4,3,7];
-var list3 = challengeTwoInputC.join(',').replace(3,7).replace(7,3);
-console.log(list3);
+document.getElementById("challenge3A").innerHTML = '<h1>' + unique + '</h1>';
 
-var domString = '<h1>' + (list) + '</h1>';
-    domString += '<h1>' + list2 + '</h1>';
-    domString += '<h1>' + list3 + '</h1>';
-document.getElementById('challenge2').innerHTML = domString;
+ input1 = null; 
+ input2 = null;
+ unique = null;
+for (var i = 0; i < challengeThreeInputB.length; i++){
+    if (input1 == null){ // Never been set - this is the first run
+      input1 = challengeThreeInputB[i];
+      continue;
+    }
+    if (input1 === challengeThreeInputB[i]) //match
+        continue;
+        
+    if (i != 1) { //we have see input1 multiple times, i is the unique one
+        unique = challengeThreeInputB[i];
+        continue;
+    }
+    if (i === 1) {//this is the second iteration and they dont match so look forward one element for the tie breaker
+        input2 = challengeThreeInputB[i];//save the second digit
+        if (input1 === challengeThreeInputB[i+1]) {// if the first and third match then second is unique
+            unique = input2;
+        }else {// else the first one is unique
+            unique = input1;
+        }  
+        break;
+    }
+}
+
+
+document.getElementById("challenge3B").innerHTML = '<h1>' + unique + '</h1>';
+
+
+
 
