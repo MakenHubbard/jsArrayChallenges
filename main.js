@@ -1,13 +1,26 @@
-//challenge 4
-var challengeFourInputA = [ 1, 2, 3 ];  // [2, 4, 6]
-var challengeFourInputB = [ 3, 8, 1, 2, 4, 12 ];  // [ 6, 16, 2, 4, 8, 24 ]
+// Challenge 5
+var array1 = [1,2];
+var array2 = [1];
+//display = [2] Given two arrays remove all values from array1 that are present in array2. Display the final results of array1
+for (i = 0; i < array2.length; i++) {
+    for (z = 0; z < array1.length; z++) {
+        if (array2[i] == array1[z])
+        array1.splice(z,1);
+    }
+    }
 
-for (var i = 0; i < challengeFourInputA.length; i++) {
-    challengeFourInputA[i] = challengeFourInputA[i]*2;
-}
-for (var i = 0; i < challengeFourInputB.length; i++) {
-    challengeFourInputB[i] = challengeFourInputB[i]*2;
-}
+console.log(array1.join(','));
+document.getElementById('challenge5ex1').innerHTML = '<h1>' + array1.join(",") + '</h1>';
 
-document.getElementById('challenge4A').innerHTML = '<h1>' + challengeFourInputA.join(',') + '</h1>';
-document.getElementById('challenge4B').innerHTML = '<h1>' + challengeFourInputB.join(','); + '</h1>';
+var array1 = [1,2, 4, 7, 5, 9];
+var array2 = [5, 9, 2];
+//display = [1, 4, 7]
+for (i = 0; i < array2.length; i++) {
+    for (z = 0; z < array1.length; z++) {
+        if (array2[i] == array1[z])
+        array1.splice(z,1);
+    }
+    }
+
+console.log(array1.join(','));
+document.getElementById('challenge5ex2').innerHTML = '<h1>' + array1.join(",") + '</h1>';
