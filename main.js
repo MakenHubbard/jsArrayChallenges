@@ -1,3 +1,180 @@
+// Challange 1
+var alphabet = [];
+var allValueArry = [];
+var comparisonArry =[];
+
+//creating 26 alphabet letters
+for(var i = 97; i < 123; i++)
+{
+   alphabet.push(String.fromCharCode(i));
+}
+
+var value = 0;
+var userInput = 'cba abc f';
+var userInputArry = userInput.split(' ');
+
+for(var j = 0; j<userInputArry.length;j++)
+{
+   //split the userInput into individual word and loop through each letter for its value
+   var stringArry = userInputArry[j].split('');
+   for(var k = 0; k<stringArry.length; k++)
+   {
+       //find the total value of all letters for one word
+       value += alphabet.indexOf(stringArry[k])+1;
+   }
+
+   //add total value of each word to array for sorting
+   allValueArry.push(value);
+   comparisonArry[userInputArry[j]] = value;
+   
+   // reset the value after loop through each word
+   value = 0; 
+}
+
+//sort the value from lowest to highest then find the highest one
+allValueArry.sort(function(a,b){return a - b});
+var largestNumber = allValueArry[allValueArry.length-1];
+
+//find the highest value among all words, if they have same value, will pick first occurence
+for(var key in comparisonArry)
+{
+   if(largestNumber === comparisonArry[key])
+       {
+       var domString = '<h1>' + key + '</h1>';
+       document.getElementById('challenge-1').innerHTML = domString;
+       break;
+       }
+   
+}
+
+//Challenge 2 
+var challengeTwoInputA = [1,2,3,4,5,6,7,8,9]; //[1,2,7,4,5,6,3,8,9];
+var list = challengeTwoInputA.join(',').replace(7,3).replace(3,7);
+console.log(list);
+
+var challengeTwoInputB = [12,13,14]; //[12,17,14];
+var list2 = challengeTwoInputB.join(',').replace(3,7);
+console.log(list2);
+
+var challengeTwoInputC = [9,2,4,7,3];  //[9,2,4,3,7];
+var list3 = challengeTwoInputC.join(',').replace(3,7).replace(7,3);
+console.log(list3);
+
+var domString = '<h1>' + (list) + '</h1>';
+    domString += '<h1>' + list2 + '</h1>';
+    domString += '<h1>' + list3 + '</h1>';
+document.getElementById('challenge2').innerHTML = domString;
+
+
+//Challenge 3 
+var challengeThreeInputA = [ 1, 1, 1, 2, 1, 1 ];  // 2
+var challengeThreeInputB = [ 0, 0, 0, 0, 0, 0, 0, 0.55, 0, 0 ];  // 0.55
+var list = challengeThreeInputA.join(',');
+var input1;
+var input2;
+var unique;
+for (var i = 0; i < challengeThreeInputA.length; i++){
+    if (input1 == null){ // Never been set - this is the first run
+      input1 = challengeThreeInputA[i];
+      continue;
+    }
+    if (input1 === challengeThreeInputA[i]) //match
+        continue;
+        
+    if (i != 1) { //we have see input1 multiple times, i is the unique one
+        unique = challengeThreeInputA[i];
+        continue;
+    }
+    if (i === 1) {//this is the second iteration and they dont match so look forward one element for the tie breaker
+        input2 = challengeThreeInputA[i];//save the second digit
+        if (input1 === challengeThreeInputA[i+1]) {// if the first and third match then second is unique
+            unique = input2;
+        }else {// else the first one is unique
+            unique = input1;
+        }  
+        break;
+    }
+}
+
+document.getElementById("challenge3A").innerHTML = '<h1>' + unique + '</h1>';
+
+ input1 = null; 
+ input2 = null;
+ unique = null;
+for (var i = 0; i < challengeThreeInputB.length; i++){
+    if (input1 == null){ // Never been set - this is the first run
+      input1 = challengeThreeInputB[i];
+      continue;
+    }
+    if (input1 === challengeThreeInputB[i]) //match
+        continue;
+        
+    if (i != 1) { //we have see input1 multiple times, i is the unique one
+        unique = challengeThreeInputB[i];
+        continue;
+    }
+    if (i === 1) {//this is the second iteration and they dont match so look forward one element for the tie breaker
+        input2 = challengeThreeInputB[i];//save the second digit
+        if (input1 === challengeThreeInputB[i+1]) {// if the first and third match then second is unique
+            unique = input2;
+        }else {// else the first one is unique
+            unique = input1;
+        }  
+        break;
+    }
+}
+
+
+document.getElementById("challenge3B").innerHTML = '<h1>' + unique + '</h1>';
+
+
+
+
+//challenge 4
+var challengeFourInputA = [ 1, 2, 3 ];  // [2, 4, 6]
+var challengeFourInputB = [ 3, 8, 1, 2, 4, 12 ];  // [ 6, 16, 2, 4, 8, 24 ]
+
+for (var i = 0; i < challengeFourInputA.length; i++) {
+    challengeFourInputA[i] = challengeFourInputA[i]*2;
+}
+for (var i = 0; i < challengeFourInputB.length; i++) {
+    challengeFourInputB[i] = challengeFourInputB[i]*2;
+}
+
+document.getElementById('challenge4A').innerHTML = '<h1>' + challengeFourInputA.join(',') + '</h1>';
+document.getElementById('challenge4B').innerHTML = '<h1>' + challengeFourInputB.join(','); + '</h1>';
+
+
+
+
+// Challenge 5
+var array1 = [1,2];
+var array2 = [1];
+//display = [2] Given two arrays remove all values from array1 that are present in array2. Display the final results of array1
+for (i = 0; i < array2.length; i++) {
+    for (z = 0; z < array1.length; z++) {
+        if (array2[i] == array1[z])
+        array1.splice(z,1);
+    }
+    }
+
+console.log(array1.join(','));
+document.getElementById('challenge5ex1').innerHTML = '<h1>' + array1.join(",") + '</h1>';
+
+var array1 = [1,2, 4, 7, 5, 9];
+var array2 = [5, 9, 2];
+//display = [1, 4, 7]
+for (i = 0; i < array2.length; i++) {
+    for (z = 0; z < array1.length; z++) {
+        if (array2[i] == array1[z])
+        array1.splice(z,1);
+    }
+    }
+
+console.log(array1.join(','));
+document.getElementById('challenge5ex2').innerHTML = '<h1>' + array1.join(",") + '</h1>';
+
+
 
 
 /*You're working in a number zoo, and it seems that one of the numbers has gone missing! Given an array of numbers. The numbers will be unsorted values between 1 and one more than the length of the array. No values will be repeated within the array. display the number that is missing.
